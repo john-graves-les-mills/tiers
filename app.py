@@ -53,7 +53,7 @@ snowflake_cursor = conn_sflake.cursor()
 st.header("Acquisitions by Tier Since 19 December 2022")
 df = run_query(f"""SELECT * FROM LMI_TEST.APPFIGURES.BASE_TIER_ACQUISITIONS_20221221""")
 days_in_data = (max(df.MAX_CREATED_DATE.values) - min(df.MIN_CREATED_DATE.values)).days + 1
-st.subheader(f"New Subscriptions by Tier for {days_in_data} Days to {str(max(df.MAX_CREATED_DATE.values))}")
+st.subheader(f"New Signups by Tier for {days_in_data} Days to {str(max(df.MAX_CREATED_DATE.values))}")
 
 df1 = df.pivot(index='SUBSCRIPTION_STORE' , columns='TIER' , values='COUNT')
 df2 = df1.sort_values(by='TIER#base', ascending=False).head(5).copy()
